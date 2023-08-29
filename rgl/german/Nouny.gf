@@ -11,7 +11,7 @@ resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
           (P.mkN "Jahr" P.neuter)
         )
       )
-    ;
+  ;
 
   --zwölf Jahre und fast sechs Jahre (twelve years and almost six years)
   oper example01 : NP =
@@ -28,7 +28,7 @@ resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
         )
         (P.mkN "Jahr" "Jahre" P.neuter)
       )
-    ;
+  ;
 
   --zwölf Jahre Diktatur (twelve years of dictatorship)
   oper example02 : NP =
@@ -38,7 +38,7 @@ resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
         (mkCN (P.mkN "Jahr" "Jahre" P.neuter))
         (mkNP (P.mkN "Diktatur" P.feminine))
       )
-    ;
+  ;
 
   --ein Land im Chaos (a country in chaos)
   oper example03 : NP =
@@ -54,7 +54,7 @@ resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
           (P.mkN "Chaos" P.neuter)
         )
       )
-    ;
+  ;
 
   --eine Zeit ohne Gesetz (a time without law, a lawless time)
   oper example04 : NP =
@@ -69,6 +69,18 @@ resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
           (P.mkN "Gesetz" P.neuter)
         )
       )
-    ;
+  ;
+
+  --bei schlechtem Wetter (in bad whether, when the weather is bad)
+  oper example05 : Adv =
+    mkAdv
+      (P.mkPrep "bei" P.dative)
+      (mkNP
+        (mkCN
+          (P.mkA "schlecht")
+          (P.mkN "Wetter" P.neuter)
+        )
+      )
+  ;
 
 }

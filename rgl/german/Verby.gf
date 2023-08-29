@@ -11,7 +11,8 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
         (mkPhr
           (mkUtt
             (mkS
-              (mkTemp presentTense anteriorAnt)
+              presentTense
+              anteriorAnt
               negativePol
               (mkCl
                 radfahrer_NP
@@ -52,7 +53,8 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
         (mkPhr
           (mkUtt
             (mkS
-              (mkTemp presentTense simultaneousAnt)
+              presentTense
+              simultaneousAnt
               positivePol
               (mkCl
                 she_NP
@@ -66,6 +68,39 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
           )
         )
         fullStopPunct
+  ;
+
+  --es regnet (it is raining)
+  oper example03 : S =
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        (mkVP
+          (P.mkV "regnen")
+        )
+      )
+  ;
+
+  --regnet es noch? (is it still raining?)
+  oper example04 : Text =
+    mkText
+      (mkQS
+        presentTense
+        simultaneousAnt
+        positivePol
+        (mkQCl
+          (mkCl
+            (mkVP
+              (P.mkAdv "noch")
+              (mkVP
+                (P.mkV "regnen")
+              )
+            )
+          )
+        )
+      )
   ;
 
 }

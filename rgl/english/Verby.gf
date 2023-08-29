@@ -3,7 +3,8 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in
   --I love you
   oper example00 : S =
     mkS
-      (mkTemp presentTense simultaneousAnt)
+      presentTense
+      simultaneousAnt
       positivePol
       (mkCl
         i_NP
@@ -17,7 +18,8 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in
   --I am laughing
   oper example01 : S =
     mkS
-      (mkTemp presentTense simultaneousAnt)
+      presentTense
+      simultaneousAnt
       positivePol
       (mkCl
         i_NP
@@ -32,7 +34,8 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in
   --I am here
   oper example02 : S =
     mkS
-      (mkTemp presentTense simultaneousAnt)
+      presentTense
+      simultaneousAnt
       positivePol
       (mkCl
         i_NP
