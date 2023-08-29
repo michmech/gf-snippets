@@ -3,7 +3,7 @@
 The `CAPIT` token (which comes from the module `Predef`) can be used for run-time capitalization.
 It capitalizes the first letter of the next orthographic word.
 
-I am explaining it here on the exampe of the German pronouns "sie" and "Sie" which differ only in capitalization
+I am explaining it here on the example of the German pronouns "sie" and "Sie" which differ only in capitalization
 but have different meanings:
 
 - The uncapitalized one, "sie", means either 'they' or 'she', in nominative and accusative.
@@ -11,11 +11,11 @@ but have different meanings:
 
 While reading a text in German, when you encounter one of these two pronouns in the middle of a sentence,
 the presence or absence of capitalization helps you disambiguate which pronoun you're looking at. 
-But when you encounter one of these at the start of a sentence you won't know which one your looking at:
-is it s "sie" capitalized because it happens to be at the start of a sentence, or is it a a "Sie"?
+But when you encounter "Sie" at the start of a sentence you won't know which one your looking at:
+is it a "sie" capitalized because it happens to be at the start of a sentence, or is it a "Sie"?
 
 Now, let's see if GF's `CAPIT` token, in interplay with or without the `case_sensitive` flag, can help me 
-with German "sie" and "Sie".
+with this pesky German "sie"/"Sie".
 
 ## How it works
 
@@ -43,7 +43,7 @@ In other words:
 - `CAPIT` is always ignored in parsing (regardless of what `flags case_sensitive` says),
 - `flags case_sensitive=off` causes all capitalization to be ignored in parsing: capitalization caused by `CAPIT`, and hardcoded capitalization.
 
-**Note.** The 2015 paper [Orthography Engineering in Grammatical Framework](https://aclanthology.org/W15-3305.pdf) by Krasimir Angelov, which introduces these features, says that `flags case_sensitive=off` only converts all input into lower-case before parsing, and nothing else. It says that, for case-insensitive parsing to work, all hard-coded tokens in your grammar must be in lower-case. This is not true, according to my tests (using the C runtime included in GF version 3.11.0). What `flags case_sensitive=off` actually does is more than that: it really does compare everything in a case-insensitive way, regardless of whether the tokens in the grammar are hard-coded as lower-case or capitalized. Maybe this is an improvement that has been introduced *after* the 2015 paper.
+**Note.** The 2015 paper [Orthography Engineering in Grammatical Framework](https://aclanthology.org/W15-3305.pdf) by Krasimir Angelov, which introduces these features, says that `flags case_sensitive=off` only converts all input into lower-case before parsing, and nothing else. It says that, for case-insensitive parsing to work, all hard-coded tokens in your grammar must be in lower-case. This is not true, according to my tests (using the C runtime included in GF version 3.11.0). What `flags case_sensitive=off` actually does is more than that: it really does compare everything in a case-insensitive manner, regardless of whether the tokens in the grammar are hard-coded as lower-case or capitalized. Maybe this is an improvement that has been introduced *after* the 2015 paper.
 
 ## Discussion
 
@@ -58,7 +58,7 @@ There are situations -- typically in the middle of a sentence -- where capitaliz
 Then there are situations -- typically at the beginning of a sentence -- where capitalization is ambiguous,
 but only one way, such that upper-case input is ambiguous but lower-case input isn't:
 - when the grammar expects "sie" it should accept both "sie" and "Sie",
-- when the grammar expects "Sie" it should only accept "Sie".
+- when the grammar expects "Sie" it should accept only "Sie".
 
 So, in my ideal GF runtime, the `CAPIT` token would behave like this:
 
