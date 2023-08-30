@@ -1,4 +1,4 @@
-resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
+resource Nouny = open Prelude, SyntaxGer, (P = ParadigmsGer), (N = NounGer), (M = MorphoGer) in {
 
   --der Afang des Jahres (the beginning of the year)
   oper example00 : NP = 
@@ -81,6 +81,34 @@ resource Nouny = open SyntaxGer, (P = ParadigmsGer), (N = NounGer) in {
           (P.mkN "Wetter" P.neuter)
         )
       )
+  ;
+
+  --solches schöne Wetter (such nice weather, with "solch" as determiner)
+  oper example06 : NP =
+    mkNP
+      (M.detLikeAdj False P.singular "solch")
+      (mkCN
+        (P.mkA "schön")
+        (P.mkN "Wetter" P.neuter)
+      )
+  ;
+
+  --solch ein schönes Wetter (such nice weather, with "solch" as predeterminer)
+  oper example07 : NP =
+    let
+      solch_Predet : Predet = lin Predet {s = \\_,_,_ => "solch" ; c = M.noCase ; a = M.PAgNone};
+      --same definition as only_Predet
+      --it would be nice if the RGL had domething like mkPredet : Str -> Predet but it doesn't
+    in
+      mkNP
+        solch_Predet
+        (mkNP
+          aSg_Det
+          (mkCN
+            (P.mkA "schön")
+            (P.mkN "Wetter" P.neuter)
+          )
+        )
   ;
 
 }
