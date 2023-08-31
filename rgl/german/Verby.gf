@@ -45,29 +45,25 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
   ;
 
   --sie hält mich für intelligent (she considers me intelligent)
-  oper example02 : Text =
+  --see also: https://stackoverflow.com/questions/76990676/how-to-build-v-np-prep-ap-in-grammatical-framework-rgl
+  oper example02 : S =
     let
       halten_V : V = P.mkV "halten" "hält" "hielt" "hielte" "gehalten";
     in
-      mkText
-        (mkPhr
-          (mkUtt
-            (mkS
-              presentTense
-              simultaneousAnt
-              positivePol
-              (mkCl
-                she_NP
-                (mkVP --jemanden für intelligent halten 
-                  (P.mkV2A halten_V for_Prep)
-                  i_NP
-                  (mkAP (P.mkA "intelligent"))
-                )
-              )
+      mkS
+        presentTense
+        simultaneousAnt
+        positivePol
+        (mkCl
+          she_NP
+          (mkVP --mich für intelligent halten (to hold me for intelligent)
+            (P.mkAdv "für intelligent")
+            (mkVP --mich halten (to hold me)
+              (P.mkV2 halten_V P.accusative)
+              i_NP
             )
           )
         )
-        fullStopPunct
   ;
 
   --es regnet (it is raining)
