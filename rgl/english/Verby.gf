@@ -45,4 +45,23 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in
       )
   ;
 
+  --it is my birthday today
+  oper example03 : S = 
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl --it be my birthday today
+        (mkVP --to be my birthday today
+          (mkVP --to be my birthday
+            (mkNP --my birthday
+              (mkDet i_Pron)
+              (P.mkN "birthday")
+            )
+          )
+          (P.mkAdv "today")
+        )
+      )
+  ; 
+
 }
