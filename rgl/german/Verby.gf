@@ -99,4 +99,49 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
       )
   ;
 
+  --sei nicht unhöfflich zu mir! (don't be impolite to me!)
+  oper example05 : Text =
+    mkText
+      (mkUtt
+        singularImpForm --du (you singular informal)
+        negativePol
+        (mkImp
+          (mkVP --unhöflich zu mir sein (to be impolite to me)
+            (mkAP --unhöflich zu mir (impolite to me)
+              (P.mkA2 --unhöflich zu... (impolite to...)
+                (P.mkA "unhöflich")
+                P.zu_Prep
+              )
+              i_NP
+            )
+          )
+        )
+      )
+      exclMarkPunct
+  ;
+
+  --du benimmst dich unhöfflich (you are behaving impolitely)
+  oper example06 : Text =
+    mkText
+      (mkS
+        presentTense
+        simultaneousAnt
+        positivePol
+        (mkCl
+          you_NP --du (you singular informal)
+          (mkVP --sich unhöfflich benehmen (to behave impolitely)
+            (mkVP
+              (P.reflV --sich benehmen (to behave)
+                (P.mkV "benehmen" "benimmt" "benimm" "benahm" "benähme" "benommen")
+                P.accusative
+              )
+            )
+            (P.mkAdv "unhöfflich")
+          )
+        )
+      )
+  ;
+
+
+
 }
