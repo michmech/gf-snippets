@@ -111,4 +111,21 @@ resource Nouny = open Prelude, SyntaxGer, (P = ParadigmsGer), (N = NounGer), (M 
         )
   ;
 
+  --eine Gruppe von Menschen (a group of people)
+    oper example08 : NP =
+    mkNP
+      aSg_Det
+      (mkCN --Gruppe von Menschen
+        (P.mkN2 --Gruppe von
+          (P.mkN "Gruppe" P.feminine)
+          part_Prep --von
+        )
+        (mkNP --people
+          aPl_Det --zero determiner 
+          (P.mkN "Mensch" "Menschen" P.masculine)
+        )
+      )
+  ;
+
+
 }

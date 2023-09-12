@@ -49,4 +49,20 @@ resource Nouny = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (E = Exten
       (P.mkN "birthday")
   ;
 
+  --a group of people
+  oper example05 : NP =
+    mkNP
+      aSg_Det
+      (mkCN --group of people
+        (P.mkN2 --group of
+          (P.mkN "group")
+          part_Prep --of
+        )
+        (mkNP --people
+          aPl_Det --zero determiner 
+          (P.mkN nonExist "people")
+        )
+      )
+  ;
+
 }
