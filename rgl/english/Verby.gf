@@ -64,4 +64,23 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in
       )
   ; 
 
+  --I have no time
+  oper example05 : S = 
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        (mkNP i_Pron)
+        (mkVP
+          (P.mkV2 (P.mkV "have"))
+          (mkNP
+            (mkDet no_Quant singularNum)
+            (P.mkN "time")
+          )
+        )
+      )
+  ;
+
+
 }

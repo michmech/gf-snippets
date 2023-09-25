@@ -142,6 +142,24 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
       )
   ;
 
+  --ich habe keine Zeit (I have no time)
+  oper example07 : S = 
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        (mkNP i_Pron)
+        (mkVP
+          (P.mkV2 (P.mkV "haben") P.accusative)
+          (mkNP
+            (mkDet no_Quant singularNum)
+            (P.mkN "Zeit" P.feminine)
+          )
+        )
+      )
+  ;
+
 
 
 }
