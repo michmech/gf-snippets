@@ -82,5 +82,45 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in
       )
   ;
 
+  --I want to help you
+  oper example06 : S =
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        i_NP
+        (mkVP --want to help you
+          want_VV
+          (mkVP --help you
+            (P.mkV2 (P.mkV "help"))
+            you_NP
+          )
+        )
+      )
+  ;
+
+  --I am trying to help you
+  oper example07 : S =
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        i_NP
+        (progressiveVP --be trying to help you
+          (mkVP --try to help you
+            (P.mkVV (P.mkV "try"))
+            (mkVP --help you
+              (P.mkV2 (P.mkV "help"))
+              you_NP
+            )
+          )
+        )
+      )
+  ;
+
+
+
 
 }
