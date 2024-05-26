@@ -15,22 +15,13 @@ resource Declaratives = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Pre
   oper step002 : VP =
     mkVP --try to help her
       (P.mkVV (P.mkV "try"))
-      (mkVP --help her
-        (P.mkV2 (P.mkV "help"))
-        she_NP
-      )
+      step001 --VP: help her
   ;
 
   --While you have a VP, that is also the right time to add any optional adverbs like 'today', 'here'.
   oper step003 : VP = 
     mkVP --try to help her today
-      (mkVP --try to help her
-        (P.mkVV (P.mkV "try"))
-        (mkVP --help her
-          (P.mkV2 (P.mkV "help"))
-          she_NP
-        )
-      )
+      step002 --VP: try to help her
       (P.mkAdv "today")
   ;
 
@@ -39,16 +30,7 @@ resource Declaratives = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Pre
   oper step004 : Cl =
     mkCl --he try to help her today
       he_NP
-      (mkVP --try to help her today
-        (mkVP --try to help her
-          (P.mkVV (P.mkV "try"))
-          (mkVP --help her
-            (P.mkV2 (P.mkV "help"))
-            she_NP
-          )
-        )
-        (P.mkAdv "today")
-      )
+      step003 --VP: try to help her today
   ;
 
   --Once you have a Cl, you can fix its tense and polarity, thereby converting it into an S.
@@ -57,43 +39,14 @@ resource Declaratives = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Pre
       pastTense
       simultaneousAnt
       positivePol
-      (mkCl --he try to help her today
-        he_NP
-        (mkVP --try to help her today
-          (mkVP --try to help her
-            (P.mkVV (P.mkV "try"))
-            (mkVP --help her
-              (P.mkV2 (P.mkV "help"))
-              she_NP
-            )
-          )
-          (P.mkAdv "today")
-        )
-      )
+      step004 --Cl: he try to help her today
   ;
 
   --Finally, we can turn an S into an Utt.
-  --This doesn't actually make any changes, an Utt is just a common super-category for S and others.
-  oper example006 : Utt =
+  --This doesn't actually make any changes, an Utt is just a common supercategory for S and others.
+  oper step006 : Utt =
     mkUtt
-      (mkS --he tried to help her today
-        pastTense
-        simultaneousAnt
-        positivePol
-        (mkCl --he try to help her today
-          he_NP
-          (mkVP --try to help her today
-            (mkVP --try to help her
-              (P.mkVV (P.mkV "try"))
-              (mkVP --help her
-                (P.mkV2 (P.mkV "help"))
-                she_NP
-              )
-            )
-            (P.mkAdv "today")
-          )
-        )
-      )
+      step005 --S: he tried to help her today
   ;
 
   --And that's it!
