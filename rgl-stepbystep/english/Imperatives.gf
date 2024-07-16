@@ -1,10 +1,9 @@
 --How to build imperative sentences.
-
 resource Imperatives = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in {
 
   --We start with a VP.
   --A VP represents a verb with all its complements (direct object, indirect object etc.) except the subject.
-  --(See Declaratives.gf for more details on building VPs.)
+  --See Declaratives.gf for more details on building VPs.
   oper step001 : VP = 
     mkVP --try to help her today
       (mkVP --try to help her

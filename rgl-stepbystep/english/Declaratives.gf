@@ -1,5 +1,4 @@
 --How to build simple declarative sentences.
-
 resource Declaratives = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in {
 
   --We start with a VP.
