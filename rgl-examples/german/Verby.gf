@@ -160,6 +160,66 @@ resource Verby = open SyntaxGer, (P = ParadigmsGer) in {
       )
   ;
 
+  --wann wird es fertig sein? (when will it be ready?)
+  oper example08 : Utt =
+    mkUtt
+      (mkQS --wann wird es fertig sein?
+        futureTense
+        simultaneousAnt
+        positivePol
+        (mkQCl --wann + es + fertig sein?
+          when_IAdv
+          (mkCl --es + fertig sein
+            it_NP
+            (mkVP --fertig sein
+              (P.mkA "fertig")
+            )
+          )
+        )
+      )
+  ;
 
+  --ich habe dich überall gesucht (I have been looking for you everywhere)
+  oper example09 : Utt =
+    let
+      suchen_V2 : V2 = P.mkV2 (P.mkV "suchen" "sucht" "suchte" "süchte" "gesucht");
+    in
+      mkUtt
+        (mkS --ich habe dich überall gesucht
+          presentTense
+          anteriorAnt
+          positivePol
+          (mkCl --ich + dich überall suchen
+            i_NP
+            (mkVP --dich überall suchen
+              everywhere_Adv
+              (mkVP --dich suchen
+                suchen_V2
+                you_NP
+              )
+            )
+          )
+        )
+  ;
+
+  --wieviel kostet es? (how much does it cost?)
+  oper example10 : Utt =
+    let
+      kosten_V : V = P.mkV "kosten" "kostet" "kostete" "köstete" "gekostet";
+    in
+      mkUtt
+        (mkQS
+          presentTense
+          simultaneousAnt
+          positivePol
+          (mkQCl --wieviel + es + kosten
+            how8much_IAdv
+            (mkCl --es + kosten
+              it_NP
+              (mkVP kosten_V)
+            )
+          )
+        )
+  ;
 
 }
