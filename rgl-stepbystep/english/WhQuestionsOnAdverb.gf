@@ -1,5 +1,5 @@
---How to build yes/no questions.
-resource YesNoQuestions = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in {
+--How to build build when/where/why questions about one of the adverbs of the sentence.
+resource WhQuestionsOnAdverb = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in {
 
   --We start with a Cl.
   --A Cl is a VP with a subject. It isn't fixed for any tense, polarity or anything like that.
@@ -19,27 +19,27 @@ resource YesNoQuestions = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), P
       )
   ;
 
-  --Convert the Cl to a QCl.
-  --This doesn't make any changes. A QCl is a common supercategory for a couple of types
-  --before they can be turned into a QS (in the next step).
+  --Then we add an IAdv (interrogative advern), thus creating a QCl.
   oper step002 : QCl =
-    mkQCl --he try to help her today?
+    mkQCl --why he try to help her today?
+      why_IAdv
       step001 --Cl: he try to help her today
   ;
 
   --Once you have a QCl, you can fix its tense and polarity, thereby converting it into a QS.
   oper step003 : QS = 
-    mkQS --will he try to help her today?
+    mkQS --why will will he try to help her today?
       futureTense
       simultaneousAnt
       positivePol
-      step002 --QCl: he try to help her today?
+      step002 --QCl: why he try to help her today?
   ;
 
   --Finally, we can turn a QS into an Utt.
   --This doesn't actually make any changes, an Utt is just a common supercategory for S, QS and others.
   oper step004 : Utt =
     mkUtt
-      step003 --QS: will he try to help her today?
+      step003 --QS: why will will he try to help her today?
   ;
+
 }

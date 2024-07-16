@@ -17,11 +17,47 @@ resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
   ;
 
   --While you have a VPSlash, that is also the right time to add any optional adverbs like 'today', 'here'.
-  --TODO: This doesn't work, see: https://stackoverflow.com/questions/78755288/how-do-i-add-an-adv-to-a-vpslash-in-grammatical-framework-rgl
   oper step003 : VPSlash = 
-    mkVPSlash --try to help an unknown someone today
-      step002 --VPSlash: try to help an unknown someone
-      (P.mkAdv "today")
+    --TODO: This doesn't work though, see: https://stackoverflow.com/questions/78755288/how-do-i-add-an-adv-to-a-vpslash-in-grammatical-framework-rgl
+    --mkVPSlash --try to help an unknown someone today
+    --  step002 --VPSlash: try to help an unknown someone
+    --  (P.mkAdv "today")
+    step002
+  ;
+
+  --The next step up is to add a subject, turning the VPSlash into a ClSlash.
+  --A ClSlash is like a Cl but with one of the (non-subject) complements deliberately left out.
+  --Just like a Cl, a ClSlash still isn't fixed for any tense, polarity or anything like that.
+  oper step004 : ClSlash =
+    mkClSlash --he try to help an unknown someone today
+      he_NP
+      step003 --ClSlash: try to help an unknown someone today
+  ;
+
+  --Now that we have a ClSlash, we can an IP (interrogatibe pronoun) which asks about the missing complement .
+  --This turns the ClSlash into QCl.
+  --A QCl is a common supercategory for a couple of types before they can be turned into a QS (in the next step).
+  --A QCl is not yet fixed for any tense, polarity or anything like that.
+  oper step005 : QCl =
+    mkQCl --whom he try to help today?
+      whoSg_IP
+      step004 --ClSLash: he try to help an unknown someone today
+  ;
+
+  --Once you have a QCl, you can fix its tense and polarity, thereby converting it into a QS.
+  oper step006 : QS = 
+    mkQS --whom will he try to help today?
+      futureTense
+      simultaneousAnt
+      positivePol
+      step005 --QCl: whom he try to help today?
+  ;
+
+  --Finally, we can turn an QS into an Utt.
+  --This doesn't actually make any changes, an Utt is just a common supercategory for S, QS and others.
+  oper step007 : Utt =
+    mkUtt
+      step006 --QS: whom will he try to help today?
   ;
 
 }
