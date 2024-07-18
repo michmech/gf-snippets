@@ -1,5 +1,5 @@
 --How to build who/what questions about one of the objects of the sentence. 
-resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in {
+resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbEng), Prelude in {
 
   --We start with a VPSlash.
   --A VPSlash is like a VP but with one of the complements deliberately left out,
@@ -18,12 +18,12 @@ resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
 
   --While you have a VPSlash, that is also the right time to add any optional adverbs like 'today', 'here'.
   oper step003 : VPSlash = 
-    --TODO: This doesn't work though, see: https://stackoverflow.com/questions/78755288/how-do-i-add-an-adv-to-a-vpslash-in-grammatical-framework-rgl
-    --mkVPSlash --try to help an unknown someone today
-    --  step002 --VPSlash: try to help an unknown someone
-    --  (P.mkAdv "today")
-    step002
+    V.AdvVPSlash --VPSlash: try to help an unknown someone today
+      step002 --VPSlash: try to help an unknown someone
+      (P.mkAdv "today")
   ;
+  --Side note: why `V.AdvVPSlash` and not just `mkVPSlash`? For that, see:
+  --https://stackoverflow.com/questions/78755288/how-do-i-add-an-adv-to-a-vpslash-in-grammatical-framework-rgl
 
   --The next step up is to add a subject, turning the VPSlash into a ClSlash.
   --A ClSlash is like a Cl but with one of the (non-subject) complements deliberately left out.
