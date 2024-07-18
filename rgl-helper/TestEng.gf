@@ -1,11 +1,11 @@
 concrete TestEng of Test = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelude in {
 
-  lincat Argument = NP;
+  lincat Complement = NP;
   lin Me = i_NP;
   lin You = you_NP; 
 
-  lincat Adverbial = H.Adjunct;
-  lin NoAdverbial = H.noAdjunct;
+  lincat Adjunct = H.Adjunct;
+  lin NoAdjunct = H.noAdjunct;
   lin Here = H.mkAdjunct here_Adv;
   lin Now = H.mkAdjunct (P.mkAdv "now");
 

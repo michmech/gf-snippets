@@ -1,12 +1,12 @@
 abstract Test = {
   flags startcat = Sentence;
 
-  cat Argument;
-  fun Me, You : Argument;
+  cat Complement;
+  fun Me, You : Complement;
 
-  cat Adverbial;
-  fun NoAdverbial, Here, Now : Adverbial;
+  cat Adjunct;
+  fun NoAdjunct, Here, Now : Adjunct;
 
   cat Sentence;
-  fun Help : Argument -> Argument -> Adverbial -> Adverbial -> Sentence;
+  fun Help : Complement -> Complement -> Adjunct -> Adjunct -> Sentence;
 }

@@ -57,9 +57,10 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelud
     type : RaiserType;
     vv : VV
   };
+  oper dummy_VV : VV = can_VV;
   oper noRaiser : Raiser = {
     type = NoRaiser;
-    vv = can_VV --dummy
+    vv = dummy_VV
   };
   oper mkRaiser : VV -> Raiser = \vv -> {
     type = VVRaiser;
@@ -73,20 +74,22 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), Prelud
     adv : Adv;
     adV : AdV
   };
+  oper dummy_Adv : Adv = here_Adv;
+  oper dummy_AdV : AdV = always_AdV;
   oper noAdjunct : Adjunct = {
     type = NoAdjunct;
-    adv = here_Adv; --dummy
-    adV = always_AdV --dummy
+    adv = dummy_Adv;
+    adV = dummy_AdV
   };
   oper mkAdjunct = overload {
     mkAdjunct : Adv -> Adjunct = \adv -> {
       type = AdvAdjunct;
       adv = adv;
-      adV = always_AdV --dummy
+      adV = dummy_AdV
     };
     mkAdjunct : AdV -> Adjunct = \adV -> {
       type = AdVAdjunct;
-      adv = here_Adv; --dummy
+      adv = dummy_Adv;
       adV = adV
     }
   };
