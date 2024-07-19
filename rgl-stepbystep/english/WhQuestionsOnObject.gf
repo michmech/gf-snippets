@@ -6,7 +6,8 @@ resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
   --so that the VPSlash can eventually be turned into a question about this missing complement.
   oper step001 : VPSlash = 
     mkVPSlash --help an unknown someone
-      (P.mkV2 (P.mkV "help"))
+      -- (P.mkV2 (P.mkV "help"))
+      (P.mkV2 (P.mkV "work") for_Prep)
   ;
 
   --You can wrap a VPSlash inside another VPSlash using words like 'must', 'can', 'want to', 'try to':

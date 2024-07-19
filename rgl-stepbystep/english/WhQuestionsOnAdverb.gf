@@ -19,7 +19,7 @@ resource WhQuestionsOnAdverb = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
       )
   ;
 
-  --Then we add an IAdv (interrogative advern), thus creating a QCl.
+  --Then we add an IAdv (interrogative adverb), thus creating a QCl.
   oper step002 : QCl =
     mkQCl --why he try to help her today?
       why_IAdv
