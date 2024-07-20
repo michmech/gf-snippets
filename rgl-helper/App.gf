@@ -29,14 +29,14 @@ abstract App = {
   --[someone] sleeps
   fun Sleep1_Dec : Complement -> Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
   fun Sleep1_Ask : Complement -> Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
-  fun Sleep1_WhSubj : IComplement -> Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
-  fun Sleep1_WhAdv : IAdjunct -> Complement -> Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
+  fun Sleep1_Wh1 : IComplement -> Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
+  fun Sleep1_Wh9 : IAdjunct -> Complement -> Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
   
   --[someone] helps [someone]
   fun Help2_Dec : Complement -> Shape -> Raiser -> Complement -> Adjunct -> Adjunct -> Sentence;
   fun Help2_Ask : Complement -> Shape -> Raiser -> Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_WhSubj : IComplement -> Shape -> Raiser -> Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_WhObj : Complement -> Shape -> Raiser -> IComplement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_WhAdv : IAdjunct -> Complement -> Shape -> Raiser -> Complement -> Adjunct -> Adjunct -> Sentence;
+  fun Help2_Wh1 : IComplement -> Shape -> Raiser -> Complement -> Adjunct -> Adjunct -> Sentence;
+  fun Help2_Wh2 : Complement -> Shape -> Raiser -> IComplement -> Adjunct -> Adjunct -> Sentence;
+  fun Help2_Wh9 : IAdjunct -> Complement -> Shape -> Raiser -> Complement -> Adjunct -> Adjunct -> Sentence;
  
 }
