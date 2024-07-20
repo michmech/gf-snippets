@@ -98,7 +98,7 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
   };
 
   --build a declarative sentence around a VP:
-  oper declarative : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
+  oper say : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
   = \subjNP,shape,raiser,vp1,adjunct1,adjunct2 -> 
     let
       --maybe add a raiser to the VP:
@@ -132,7 +132,7 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
   ;
 
   --build a yes/no question around a VP:
-  oper yesno : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
+  oper ask : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
   = \subjNP,shape,raiser,vp1,adjunct1,adjunct2 -> 
     let
       --maybe add a raiser to the VP:
@@ -168,7 +168,7 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
   ;
 
   --build a wh-subject question around a VP:
-  oper whsubj : IP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
+  oper whs : IP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
   = \subjIP,shape,raiser,vp1,adjunct1,adjunct2 -> 
     let
       --maybe add a raiser to the VP:
@@ -202,7 +202,7 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
   ;
 
   --build a wh-object question around a VPSlash:
-  oper whobj : NP -> Shape -> Raiser -> VPSlash -> IP -> Adjunct -> Adjunct -> Str
+  oper who : NP -> Shape -> Raiser -> VPSlash -> IP -> Adjunct -> Adjunct -> Str
   = \subjNP,shape,raiser,vpslash1,objIP,adjunct1,adjunct2 -> 
     let
       --maybe add a raiser to the VP:
@@ -238,8 +238,8 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
   ;
 
   --build a wh-adverb question around a VP:
-  oper whadv : IAdv -> NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str
-  = \iadv,subjNP,shape,raiser,vp1,adjunct1,adjunct2 -> 
+  oper wha : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> IAdv -> Str
+  = \subjNP,shape,raiser,vp1,adjunct1,adjunct2,iadv -> 
     let
       --maybe add a raiser to the VP:
       vp2 = case raiser.type of {
@@ -278,7 +278,7 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
       help_V2 = (P.mkV2 (P.mkV "help"));
       try_V = (P.mkV "try");
     in
-      whadv why_IAdv you_NP IsNotDoing (mkRaiser can_VV) (mkVP help_V2 i_NP) (mkAdjunct always_AdV) (mkAdjunct here_Adv)
+      wha you_NP IsNotDoing (mkRaiser can_VV) (mkVP help_V2 i_NP) (mkAdjunct always_AdV) (mkAdjunct here_Adv) why_IAdv
   ;
 
 }
