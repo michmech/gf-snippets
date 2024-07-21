@@ -36,25 +36,26 @@ abstract App = {
   cat Sentence;
   
   --[someone] sleeps
-  fun Sleep1_Dec :  Complement ->    Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
-  fun Sleep1_Ask :  Complement ->    Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
-  fun Sleep1_Wh1 : IComplement ->    Shape -> Raiser -> Adjunct -> Adjunct -> Sentence;
-  fun Sleep1_Wh9 :  Complement ->    Shape -> Raiser -> Adjunct -> Adjunct -> IAdjunct -> Sentence;
-  fun Sleep1_Imp :   ImpTarget -> ImpShape -> Raiser -> Adjunct -> Adjunct -> Sentence;
+  fun Sleep1_Dec :  Complement ->    Shape -> Raiser -> Adjunct -> Adjunct -> Sentence; --I am sleeping.
+  fun Sleep1_Ask :  Complement ->    Shape -> Raiser -> Adjunct -> Adjunct -> Sentence; --are you sleeping?
+  fun Sleep1_Wh1 : IComplement ->    Shape -> Raiser -> Adjunct -> Adjunct -> Sentence; --who is sleeping?
+  fun Sleep1_Wh9 :  Complement ->    Shape -> Raiser -> Adjunct -> Adjunct -> IAdjunct -> Sentence; --where are you sleeping?
+  fun Sleep1_Imp :   ImpTarget -> ImpShape -> Raiser -> Adjunct -> Adjunct -> Sentence; --don't sleep.
   
   --[someone] helps [someone]
-  fun Help2_Dec :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_Ask :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_Wh1 : IComplement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_Wh2 :  Complement ->    Shape -> Raiser -> IComplement -> Adjunct -> Adjunct -> Sentence;
-  fun Help2_Wh9 :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> IAdjunct -> Sentence;
-  fun Help2_Imp :   ImpTarget -> ImpShape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence;
+  fun Help2_Dec :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --I am helping you.
+  fun Help2_Ask :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --are you helping me?
+  fun Help2_Wh1 : IComplement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --who will help me?
+  fun Help2_Wh2 :  Complement ->    Shape -> Raiser -> IComplement -> Adjunct -> Adjunct -> Sentence; --who am I going to help?
+  fun Help2_Wh9 :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> IAdjunct -> Sentence; --wy are you helping me?
+  fun Help2_Imp :   ImpTarget -> ImpShape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --help me.
  
   --[someone] helps [someone] with [something]
-  fun Help3_Dec :  Complement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help3_Ask :  Complement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help3_Wh1 : IComplement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence;
-  fun Help3_Wh9 :  Complement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> IAdjunct -> Sentence;
-  fun Help3_Imp :   ImpTarget -> ImpShape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence;
+  fun Help3_Dec :  Complement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence; --I will help you with that.
+  fun Help3_Ask :  Complement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence; --will you help me with that? 
+  fun Help3_Wh1 : IComplement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence; --who helped you with it?
+  fun Help3_Wh3 :  Complement ->    Shape -> Raiser ->  Complement -> IComplement -> Adjunct -> Adjunct -> Sentence; --what are you trying to help me with?
+  fun Help3_Wh9 :  Complement ->    Shape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> IAdjunct -> Sentence; --why didn't you help them? 
+  fun Help3_Imp :   ImpTarget -> ImpShape -> Raiser ->  Complement ->  Complement -> Adjunct -> Adjunct -> Sentence; --help me with this.
 
 }

@@ -99,6 +99,7 @@ concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M
   lin Help3_Dec subjNP shape raiser obj1NP obj2NP adj1 adj2 = H.say subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
   lin Help3_Ask subjNP shape raiser obj1NP obj2NP adj1 adj2 = H.ask subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
   lin Help3_Wh1 subjIP shape raiser obj1NP obj2NP adj1 adj2 = H.whs subjIP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
+  lin Help3_Wh3 subjNP shape raiser obj1NP obj2IP adj1 adj2 = H.who subjNP shape raiser (mkVPSlash help_V3 obj1NP) obj2IP adj1 adj2;
   lin Help3_Wh9 subjNP shape raiser obj1NP obj2NP adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2 iadv;
   lin Help3_Imp impTarget impShape raiser obj1NP obj2NP adj1 adj2 = H.imp impTarget impShape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
 
