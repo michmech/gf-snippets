@@ -1,34 +1,41 @@
 concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (R = ResEng), Prelude in {
 
   lincat Shape = H.Shape;
-  lin Did = H.Did;
-  lin Does = H.Does;
-  lin WillDo = H.WillDo;
-  lin WouldDo = H.WouldDo;
-  lin WasDoing = H.WasDoing;
-  lin IsDoing = H.IsDoing;
-  lin WillBeDoing = H.WillBeDoing;
-  lin WouldBeDoing = H.WouldBeDoing;
-  lin HasDone = H.HasDone;
-  lin HasBeenDoing = H.HasBeenDoing;
-  lin DidNotDo = H.DidNotDo;
-  lin DoesNotDo = H.DoesNotDo;
-  lin WillNotDo = H.WillNotDo;
-  lin WouldNotDo = H.WouldNotDo;
-  lin WasNotDoing = H.WasNotDoing;
-  lin IsNotDoing = H.IsNotDoing;
-  lin WillNotBeDoing = H.WillNotBeDoing;
-  lin WouldNotBeDoing = H.WouldNotBeDoing;
-  lin HasNotDone = H.HasNotDone;
-  lin HasNotBeenDoing = H.HasNotBeenDoing;
+  lin Did = H.did;
+  lin Does = H.does;
+  lin WillDo = H.willDo;
+  lin WouldDo = H.wouldDo;
+  lin WasDoing = H.wasDoing;
+  lin IsDoing = H.isDoing;
+  lin WillBeDoing = H.willBeDoing;
+  lin WouldBeDoing = H.wouldBeDoing;
+  lin HasDone = H.hasDone;
+  lin HasBeenDoing = H.hasBeenDoing;
+  lin DidNotDo = H.didNotDo;
+  lin DoesNotDo = H.doesNotDo;
+  lin WillNotDo = H.willNotDo;
+  lin WouldNotDo = H.wouldNotDo;
+  lin WasNotDoing = H.wasNotDoing;
+  lin IsNotDoing = H.isNotDoing;
+  lin WillNotBeDoing = H.willNotBeDoing;
+  lin WouldNotBeDoing = H.wouldNotBeDoing;
+  lin HasNotDone = H.hasNotDone;
+  lin HasNotBeenDoing = H.hasNotBeenDoing;
+
+  lincat ImpShape = H.ImpShape;
+  lin Do = H.do;
+  lin DoNot = H.doNot;
+
+  lincat ImpTarget = H.ImpTarget;
+  lin HeyYou = H.heyYou;
   
   lincat Raiser = H.Raiser;
   lin NoRaiser = H.noRaiser;
   lin Can = H.mkRaiser can_VV;
   lin Must = H.mkRaiser must_VV;
-  lin Want = H.mkRaiser want_VV;
-  lin Try = H.mkRaiser (P.mkVV (P.mkV "try"));
-
+  lin WantTo = H.mkRaiser want_VV;
+  lin TryTo = H.mkRaiser (P.mkVV (P.mkV "try"));
+  
   lincat Complement = NP;
   lin Me = i_NP;
   lin We = we_NP;
@@ -78,6 +85,7 @@ concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M
   lin Sleep1_Ask subjNP shape raiser adj1 adj2 = H.ask subjNP shape raiser (mkVP sleep_V) adj1 adj2;
   lin Sleep1_Wh1 subjIP shape raiser adj1 adj2 = H.whs subjIP shape raiser (mkVP sleep_V) adj1 adj2;
   lin Sleep1_Wh9 subjNP shape raiser adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP sleep_V) adj1 adj2 iadv;
+  lin Sleep1_Imp impTarget impShape raiser adj1 adj2 = H.imp impTarget impShape raiser (mkVP sleep_V) adj1 adj2;
   
   --[someone] helps [someone]
   lin Help2_Dec subjNP shape raiser objNP adj1 adj2 = H.say subjNP shape raiser (mkVP help_V2 objNP) adj1 adj2;
@@ -85,11 +93,13 @@ concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M
   lin Help2_Wh1 subjIP shape raiser objNP adj1 adj2 = H.whs subjIP shape raiser (mkVP help_V2 objNP) adj1 adj2;
   lin Help2_Wh2 subjNP shape raiser objIP adj1 adj2 = H.who subjNP shape raiser (mkVPSlash help_V2) objIP adj1 adj2;
   lin Help2_Wh9 subjNP shape raiser objNP adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP help_V2 objNP) adj1 adj2 iadv;
+  lin Help2_Imp impTarget impShape raiser objNP adj1 adj2 = H.imp impTarget impShape raiser (mkVP help_V2 objNP) adj1 adj2;
 
   --[someone] helps [someone] with [something]
   lin Help3_Dec subjNP shape raiser obj1NP obj2NP adj1 adj2 = H.say subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
   lin Help3_Ask subjNP shape raiser obj1NP obj2NP adj1 adj2 = H.ask subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
   lin Help3_Wh1 subjIP shape raiser obj1NP obj2NP adj1 adj2 = H.whs subjIP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
   lin Help3_Wh9 subjNP shape raiser obj1NP obj2NP adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2 iadv;
+  lin Help3_Imp impTarget impShape raiser obj1NP obj2NP adj1 adj2 = H.imp impTarget impShape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
 
 }
