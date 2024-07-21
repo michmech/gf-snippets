@@ -6,8 +6,8 @@ resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
   --so that the VPSlash can eventually be turned into a question about this missing complement.
   oper step001 : VPSlash = 
     mkVPSlash --help an unknown someone
-      -- (P.mkV2 (P.mkV "help"))
-      (P.mkV2 (P.mkV "work") for_Prep)
+      (P.mkV2 (P.mkV "help"))
+      -- (P.mkV2 (P.mkV "work") for_Prep)
   ;
 
   --You can wrap a VPSlash inside another VPSlash using words like 'must', 'can', 'want to', 'try to':
@@ -19,12 +19,10 @@ resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
 
   --While you have a VPSlash, that is also the right time to add any optional adverbs like 'today', 'here'.
   oper step003 : VPSlash = 
-    V.AdvVPSlash --VPSlash: try to help an unknown someone today
+    V.AdvVPSlash --[not in API] VPSlash: try to help an unknown someone today
       step002 --VPSlash: try to help an unknown someone
       (P.mkAdv "today")
   ;
-  --Side note: why `V.AdvVPSlash` and not just `mkVPSlash`? For that, see:
-  --https://stackoverflow.com/questions/78755288/how-do-i-add-an-adv-to-a-vpslash-in-grammatical-framework-rgl
 
   --The next step up is to add a subject, turning the VPSlash into a ClSlash.
   --A ClSlash is like a Cl but with one of the (non-subject) complements deliberately left out.
