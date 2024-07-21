@@ -47,7 +47,7 @@ abstract App = {
   fun Help2_Ask :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --are you helping me?
   fun Help2_Wh1 : IComplement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --who will help me?
   fun Help2_Wh2 :  Complement ->    Shape -> Raiser -> IComplement -> Adjunct -> Adjunct -> Sentence; --who am I going to help?
-  fun Help2_Wh9 :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> IAdjunct -> Sentence; --wy are you helping me?
+  fun Help2_Wh9 :  Complement ->    Shape -> Raiser ->  Complement -> Adjunct -> Adjunct -> IAdjunct -> Sentence; --why are you helping me?
   fun Help2_Imp :   ImpTarget -> ImpShape -> Raiser ->  Complement -> Adjunct -> Adjunct -> Sentence; --help me.
  
   --[someone] helps [someone] with [something]
