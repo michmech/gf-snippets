@@ -81,26 +81,26 @@ concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M
   oper help_V3 = (P.mkV3 (P.mkV "help") P.noPrep with_Prep);
 
   --[someone] sleeps
-  lin Sleep1_Dec subjNP shape raiser adj1 adj2 = H.say subjNP shape raiser (mkVP sleep_V) adj1 adj2;
-  lin Sleep1_Ask subjNP shape raiser adj1 adj2 = H.ask subjNP shape raiser (mkVP sleep_V) adj1 adj2;
-  lin Sleep1_Wh1 subjIP shape raiser adj1 adj2 = H.whs subjIP shape raiser (mkVP sleep_V) adj1 adj2;
-  lin Sleep1_Wh9 subjNP shape raiser adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP sleep_V) adj1 adj2 iadv;
-  lin Sleep1_Imp impTarget impShape raiser adj1 adj2 = H.imp impTarget impShape raiser (mkVP sleep_V) adj1 adj2;
+  lin Sleep1_Dec subjNP shape raiser adj = H.say subjNP shape raiser (mkVP sleep_V) adj;
+  lin Sleep1_Ask subjNP shape raiser adj = H.ask subjNP shape raiser (mkVP sleep_V) adj;
+  lin Sleep1_Wh1 subjIP shape raiser adj = H.whs subjIP shape raiser (mkVP sleep_V) adj;
+  lin Sleep1_Wh9 subjNP shape raiser adj iadv = H.wha subjNP shape raiser (mkVP sleep_V) adj iadv;
+  lin Sleep1_Imp impTarget impShape raiser adj = H.imp impTarget impShape raiser (mkVP sleep_V) adj;
   
   --[someone] helps [someone]
-  lin Help2_Dec subjNP shape raiser objNP adj1 adj2 = H.say subjNP shape raiser (mkVP help_V2 objNP) adj1 adj2;
-  lin Help2_Ask subjNP shape raiser objNP adj1 adj2 = H.ask subjNP shape raiser (mkVP help_V2 objNP) adj1 adj2;
-  lin Help2_Wh1 subjIP shape raiser objNP adj1 adj2 = H.whs subjIP shape raiser (mkVP help_V2 objNP) adj1 adj2;
-  lin Help2_Wh2 subjNP shape raiser objIP adj1 adj2 = H.who subjNP shape raiser (mkVPSlash help_V2) objIP adj1 adj2;
-  lin Help2_Wh9 subjNP shape raiser objNP adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP help_V2 objNP) adj1 adj2 iadv;
-  lin Help2_Imp impTarget impShape raiser objNP adj1 adj2 = H.imp impTarget impShape raiser (mkVP help_V2 objNP) adj1 adj2;
+  lin Help2_Dec subjNP shape raiser objNP adj = H.say subjNP shape raiser (mkVP help_V2 objNP) adj;
+  lin Help2_Ask subjNP shape raiser objNP adj = H.ask subjNP shape raiser (mkVP help_V2 objNP) adj;
+  lin Help2_Wh1 subjIP shape raiser objNP adj = H.whs subjIP shape raiser (mkVP help_V2 objNP) adj;
+  lin Help2_Wh2 subjNP shape raiser objIP adj = H.who subjNP shape raiser (mkVPSlash help_V2) objIP adj;
+  lin Help2_Wh9 subjNP shape raiser objNP adj iadv = H.wha subjNP shape raiser (mkVP help_V2 objNP) adj iadv;
+  lin Help2_Imp impTarget impShape raiser objNP adj = H.imp impTarget impShape raiser (mkVP help_V2 objNP) adj;
 
   --[someone] helps [someone] with [something]
-  lin Help3_Dec subjNP shape raiser obj1NP obj2NP adj1 adj2 = H.say subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
-  lin Help3_Ask subjNP shape raiser obj1NP obj2NP adj1 adj2 = H.ask subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
-  lin Help3_Wh1 subjIP shape raiser obj1NP obj2NP adj1 adj2 = H.whs subjIP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
-  lin Help3_Wh3 subjNP shape raiser obj1NP obj2IP adj1 adj2 = H.who subjNP shape raiser (mkVPSlash help_V3 obj1NP) obj2IP adj1 adj2;
-  lin Help3_Wh9 subjNP shape raiser obj1NP obj2NP adj1 adj2 iadv = H.wha subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2 iadv;
-  lin Help3_Imp impTarget impShape raiser obj1NP obj2NP adj1 adj2 = H.imp impTarget impShape raiser (mkVP help_V3 obj1NP obj2NP) adj1 adj2;
+  lin Help3_Dec subjNP shape raiser obj1NP obj2NP adj = H.say subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj;
+  lin Help3_Ask subjNP shape raiser obj1NP obj2NP adj = H.ask subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj;
+  lin Help3_Wh1 subjIP shape raiser obj1NP obj2NP adj = H.whs subjIP shape raiser (mkVP help_V3 obj1NP obj2NP) adj;
+  lin Help3_Wh3 subjNP shape raiser obj1NP obj2IP adj = H.who subjNP shape raiser (mkVPSlash help_V3 obj1NP) obj2IP adj;
+  lin Help3_Wh9 subjNP shape raiser obj1NP obj2NP adj iadv = H.wha subjNP shape raiser (mkVP help_V3 obj1NP obj2NP) adj iadv;
+  lin Help3_Imp impTarget impShape raiser obj1NP obj2NP adj = H.imp impTarget impShape raiser (mkVP help_V3 obj1NP obj2NP) adj;
 
 }

@@ -93,53 +93,51 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
   };
 
   --functions for building sentences around a VP or a VPSlash:
-  oper say : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str = \subjNP,shape,raiser,vp,adjunct1,adjunct2 ->
-    let _vp = adjunctifyVP adjunct1 adjunct2 (shapeVP shape (raiseVP raiser vp));
+  oper say : NP -> Shape -> Raiser -> VP -> Adjunct -> Str = \subjNP,shape,raiser,vp,adjunct ->
+    let _vp = adjunctifyVP adjunct (shapeVP shape (raiseVP raiser vp));
       cl = mkCl subjNP _vp; --add a subject
       s = mkS shape.temp shape.pol cl --add temporal/aspectual features and polarity
-    in (mkText s).s ++ shape.s ++ raiser.s ++ adjunct1.s ++ adjunct2.s; -- declarative sentence
-  oper ask : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str = \subjNP,shape,raiser,vp,adjunct1,adjunct2 -> 
-    let _vp = adjunctifyVP adjunct1 adjunct2 (shapeVP shape (raiseVP raiser vp));
+    in (mkText s).s ++ shape.s ++ raiser.s ++ adjunct.s; -- declarative sentence
+  oper ask : NP -> Shape -> Raiser -> VP -> Adjunct -> Str = \subjNP,shape,raiser,vp,adjunct -> 
+    let _vp = adjunctifyVP adjunct (shapeVP shape (raiseVP raiser vp));
       cl = mkCl subjNP _vp; --add a subject
       qcl = mkQCl cl;
       qs = mkQS shape.temp shape.pol qcl --add temporal/aspectual features and polarity
-    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct1.s ++ adjunct2.s; --yes/no question
-  oper whs : IP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> Str = \subjIP,shape,raiser,vp,adjunct1,adjunct2 -> 
-    let _vp = adjunctifyVP adjunct1 adjunct2 (shapeVP shape (raiseVP raiser vp));
+    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct.s; --yes/no question
+  oper whs : IP -> Shape -> Raiser -> VP -> Adjunct -> Str = \subjIP,shape,raiser,vp,adjunct -> 
+    let _vp = adjunctifyVP adjunct (shapeVP shape (raiseVP raiser vp));
       qcl = mkQCl subjIP _vp; --add the IP subject
       qs = mkQS shape.temp shape.pol qcl --add temporal/aspectual features and polarity
-    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct1.s ++ adjunct2.s; --wh-question asking about the subject
-  oper who : NP -> Shape -> Raiser -> VPSlash -> IP -> Adjunct -> Adjunct -> Str = \subjNP,shape,raiser,vps,objIP,adjunct1,adjunct2 -> 
-    let _vps = adjunctifyVPSlash adjunct1 adjunct2 (shapeVPSlash shape (raiseVPSlash raiser vps));
+    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct.s; --wh-question asking about the subject
+  oper who : NP -> Shape -> Raiser -> VPSlash -> IP -> Adjunct -> Str = \subjNP,shape,raiser,vps,objIP,adjunct -> 
+    let _vps = adjunctifyVPSlash adjunct (shapeVPSlash shape (raiseVPSlash raiser vps));
       clslash : ClSlash = mkClSlash subjNP _vps; --add a subject
       qcl = mkQCl objIP clslash; --add the interrogative pronoun
       qs = mkQS shape.temp shape.pol qcl --add temporal/aspectual features and polarity
-    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct1.s ++ adjunct2.s; --wh-question asking about one of the objects
-  oper wha : NP -> Shape -> Raiser -> VP -> Adjunct -> Adjunct -> IAdv -> Str = \subjNP,shape,raiser,vp,adjunct1,adjunct2,iadv -> 
-    let _vp = adjunctifyVP adjunct1 adjunct2 (shapeVP shape (raiseVP raiser vp));
+    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct.s; --wh-question asking about one of the objects
+  oper wha : NP -> Shape -> Raiser -> VP -> Adjunct -> IAdv -> Str = \subjNP,shape,raiser,vp,adjunct,iadv -> 
+    let _vp = adjunctifyVP adjunct (shapeVP shape (raiseVP raiser vp));
       cl = mkCl subjNP _vp; --add a subject
       qcl = mkQCl iadv cl; --add the interrogative adverb
       qs = mkQS shape.temp shape.pol qcl --add temporal/aspectual features and polarity
-    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct1.s ++ adjunct2.s; --wh-question asking about an adverb
-  oper imp : ImpTarget -> ImpShape -> Raiser -> VP -> Adjunct -> Adjunct -> Str = \impTarget,impShape,raiser,vp,adjunct1,adjunct2 ->
-    let _vp = adjunctifyVP adjunct1 adjunct2 (raiseVP raiser vp);
+    in (mkText qs).s ++ shape.s ++ raiser.s ++ adjunct.s; --wh-question asking about an adverb
+  oper imp : ImpTarget -> ImpShape -> Raiser -> VP -> Adjunct -> Str = \impTarget,impShape,raiser,vp,adjunct ->
+    let _vp = adjunctifyVP adjunct (raiseVP raiser vp);
       utt = mkUtt impTarget.impForm impShape.pol (mkImp _vp)
-    in (mkText utt).s ++ impTarget.s ++ impShape.s ++ raiser.s ++ adjunct1.s ++ adjunct2.s; --imperative sentence
+    in (mkText utt).s ++ impTarget.s ++ impShape.s ++ raiser.s ++ adjunct.s; --imperative sentence
 
   --helpers used from the sentence-building functions above:
   oper raiseVP : Raiser -> VP -> VP = \raiser,vp ->
     case raiser.type of {NoRaiser => vp; VVRaiser => mkVP raiser.vv vp};
   oper shapeVP : Shape -> VP -> VP = \shape,vp ->
     case shape.progressivity of {Progressive => progressiveVP vp; NotProgressive => vp};
-  oper adjunctifyVP : Adjunct -> Adjunct -> VP -> VP = \adjunct1,adjunct2,vp -> 
-    let _vp = case adjunct1.type of {NoAdjunct => vp; AdvAdjunct => mkVP vp adjunct1.adv; AdVAdjunct => mkVP adjunct1.adV vp};
-    in case adjunct2.type of {NoAdjunct => _vp; AdvAdjunct => mkVP _vp adjunct2.adv; AdVAdjunct => mkVP adjunct2.adV _vp};
+  oper adjunctifyVP : Adjunct -> VP -> VP = \adjunct,vp -> 
+    case adjunct.type of {NoAdjunct => vp; AdvAdjunct => mkVP vp adjunct.adv; AdVAdjunct => mkVP adjunct.adV vp};
   oper raiseVPSlash : Raiser -> VPSlash -> VPSlash = \raiser,vps ->
     case raiser.type of {NoRaiser => vps; VVRaiser => mkVPSlash raiser.vv vps};
   oper shapeVPSlash : Shape -> VPSlash -> VPSlash = \shape,vps -> case shape.progressivity of {Progressive => E.ProgrVPSlash vps; NotProgressive => vps};
-  oper adjunctifyVPSlash : Adjunct -> Adjunct -> VPSlash -> VPSlash = \adjunct1,adjunct2,vps -> 
-    let _vps = case adjunct1.type of {NoAdjunct => vps; AdvAdjunct => V.AdvVPSlash vps adjunct1.adv; AdVAdjunct => V.AdVVPSlash adjunct1.adV vps};
-    in case adjunct2.type of {NoAdjunct => _vps; AdvAdjunct => V.AdvVPSlash _vps adjunct2.adv; AdVAdjunct => V.AdVVPSlash adjunct2.adV _vps};
+  oper adjunctifyVPSlash : Adjunct -> VPSlash -> VPSlash = \adjunct,vps -> 
+    case adjunct.type of {NoAdjunct => vps; AdvAdjunct => V.AdvVPSlash vps adjunct.adv; AdVAdjunct => V.AdVVPSlash adjunct.adV vps};
 
   --finally, a little function for ad-hoc testing:
   oper test : Str =
@@ -147,7 +145,7 @@ resource HelperEng = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = V
       help_V2 = (P.mkV2 (P.mkV "help"));
       try_V = (P.mkV "try");
     in
-      imp heyYou do (mkRaiser (P.mkVV try_V)) (mkVP help_V2 i_NP) (mkAdjunct here_Adv) noAdjunct
+      imp heyYou do (mkRaiser (P.mkVV try_V)) (mkVP help_V2 i_NP) (mkAdjunct here_Adv)
   ; 
 
 }
