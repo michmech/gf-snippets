@@ -36,7 +36,7 @@ concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M
   lin WantTo = H.mkRaiser want_VV;
   lin TryTo = H.mkRaiser (P.mkVV (P.mkV "try"));
   
-  lincat Complement = NP;
+  lincat Participant = NP;
   lin Me = i_NP;
   lin We = we_NP;
   lin You = you_NP; 
@@ -64,7 +64,7 @@ concrete AppEng of App = open (H = HelperEng), SyntaxEng, (P = ParadigmsEng), (M
   lin Now = H.mkAdjunct (P.mkAdv "now");
   lin Always = H.mkAdjunct always_AdV;
 
-  lincat IComplement = IP;
+  lincat IParticipant = IP;
   lin Who = R.mkIP "who" "who" "whose" P.singular; --override RGL's own who_IP which has "whom"
   lin What = what_IP;
 
