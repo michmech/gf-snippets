@@ -11,7 +11,7 @@ but have different meanings:
 
 While reading a text in German, when you encounter one of these two pronouns in the middle of a sentence,
 the presence or absence of capitalization helps you disambiguate which pronoun you're looking at. 
-But when you encounter "Sie" at the start of a sentence you won't know which one your looking at:
+But when you encounter "Sie" at the start of a sentence you won't know which one you're looking at:
 is it a "sie" capitalized because it happens to be at the start of a sentence, or is it a "Sie"?
 
 Now, let's see if GF's `CAPIT` token, in interplay with or without the `case_sensitive` flag, can help me 
