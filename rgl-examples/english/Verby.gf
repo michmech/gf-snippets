@@ -255,4 +255,58 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbE
       )
   ;
 
+  --he always sleeps
+  oper example16 : S =
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        he_NP
+        (mkVP
+          (always_AdV)
+          (mkVP
+            (P.mkV "sleep")
+          )
+        )
+      )
+  ;
+
+  --he never sleeps
+  oper example17 : S =
+    mkS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        he_NP
+        (mkVP
+          (P.mkAdV "never")
+          (mkVP
+            (P.mkV "sleep")
+          )
+        )
+      )
+  ;
+
+  --he isn't sleeping yet
+  oper example18 : S =
+    mkS
+      presentTense
+      simultaneousAnt
+      negativePol
+      (mkCl
+        he_NP
+        (mkVP
+          (progressiveVP
+            (mkVP
+              (P.mkV "sleep")
+            )
+          )
+          (P.mkAdv "yet")
+        )
+      )
+  ;
+
+
 }
