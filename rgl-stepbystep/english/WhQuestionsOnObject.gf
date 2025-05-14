@@ -30,7 +30,7 @@ resource WhQuestionsOnObject = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEn
   oper step004 : ClSlash =
     mkClSlash --he try to help an unknown someone today
       he_NP
-      step003 --ClSlash: try to help an unknown someone today
+      step003 --VPSlash: try to help an unknown someone today
   ;
 
   --Now that we have a ClSlash, we can an IP (interrogatibe pronoun) which asks about the missing complement .

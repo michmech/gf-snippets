@@ -308,5 +308,41 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbE
       )
   ;
 
+  --I will do it this week
+  oper example19 : S =
+    mkS
+      futureTense
+      simultaneousAnt
+      positivePol
+      (mkCl
+        i_NP
+        (mkVP --VP: do it this week
+          (mkVP --VP: do it
+            (P.mkV2 (P.mkV "do"))
+            it_NP
+          )
+          (mkAdv --Adv: this week
+            P.noPrep
+            (mkNP --NP: this week
+              this_Det
+              (P.mkN "week")
+            )
+          )
+        )
+      )
+  ;
+
+  --I will do it this week
+  oper example20 : S =
+    let
+      do_V2 : V2 = P.mkV2 (P.mkV "do");
+      do_it_VP : VP = mkVP do_V2 it_NP;
+      this_week_NP : NP = mkNP this_Det (P.mkN "week");
+      this_week_Adv : Adv = mkAdv P.noPrep this_week_NP;
+      do_it_this_week_VP : VP = mkVP do_it_VP this_week_Adv
+    in
+      mkS futureTense simultaneousAnt positivePol (mkCl i_NP do_it_this_week_VP)
+  ;
+
 
 }
