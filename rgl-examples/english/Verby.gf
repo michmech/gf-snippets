@@ -344,5 +344,16 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbE
       mkS futureTense simultaneousAnt positivePol (mkCl i_NP do_it_this_week_VP)
   ;
 
+  --I would like to go
+  oper example21 : S =
+    let
+      go_V : V = P.mkV "go";
+      go_VP : VP = mkVP go_V;
+      like_VV : VV = P.mkVV (P.mkV "like");
+      like_to_go_VP : VP = mkVP like_VV go_VP
+    in
+      mkS conditionalTense simultaneousAnt positivePol (mkCl i_NP like_to_go_VP)
+  ;
+
 
 }
