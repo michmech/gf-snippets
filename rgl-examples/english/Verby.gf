@@ -355,5 +355,25 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbE
       mkS conditionalTense simultaneousAnt positivePol (mkCl i_NP like_to_go_VP)
   ;
 
+  --what are you working with?
+  oper example22 : QS =
+     mkQS
+      presentTense
+      simultaneousAnt
+      positivePol
+      (mkQCl --you + working with + what?
+        what_IP
+        (mkClSlash --you + be working with *an unknown something*
+          you_NP
+          (E.ProgrVPSlash --[not in API] be working with *an unknown something*
+            (mkVPSlash -- work with *an unknown something*
+              (P.mkV2 (P.mkV "work") with_Prep)
+            )
+          )
+        )
+      )
+  ;
+ 
+
 
 }
