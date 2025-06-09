@@ -1,4 +1,4 @@
-resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbEng), (E = ExtendEng), Prelude in {
+resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbEng), (E = ExtendEng), (R = ResEng), Prelude in {
 
   --I love you
   oper example00 : S =
@@ -373,7 +373,93 @@ resource Verby = open SyntaxEng, (P = ParadigmsEng), (M = MorphoEng), (V = VerbE
         )
       )
   ;
- 
 
+  --I am from Canada
+  oper example23 : Text =
+    mkText
+      (mkS
+        presentTense
+        simultaneousAnt
+        positivePol
+        (mkCl
+          (mkNP i_Pron)
+          (mkAdv --from Canada
+            from_Prep
+            (mkNP (P.mkN "Canada"))
+          )
+        )
+      )
+  ;
+
+  --who do you sleep with?
+  --strategy 1: VPSlash --> ClSlash --> QCl
+  oper example24 : Text = 
+    let
+      who_IP : IP = R.mkIP "who" "who" "whose" P.singular --overrides RGL's who_IP which gives you "whom...with" instead of "who...with" 
+    in
+      mkText
+        (mkQS
+          presentTense
+          simultaneousAnt
+          positivePol
+          (mkQCl --you + sleep with + who?
+            who_IP
+            (mkClSlash --you + sleep with ___
+              you_NP
+              (mkVPSlash -- sleep with ___
+                (P.mkV2 (P.mkV "sleep") with_Prep)
+              )
+            )
+          )
+        )
+  ;
+
+  --who do you sleep with?
+  --strategy 2: VP --> Cl --> ClSlash --> QCl
+  oper example25 : Text = 
+    let
+      who_IP : IP = R.mkIP "who" "who" "whose" P.singular --overrides RGL's who_IP which gives you "whom...with" instead of "who...with" 
+    in
+      mkText
+        (mkQS
+          presentTense
+          simultaneousAnt
+          positivePol
+          (mkQCl --you sleep with + who?
+            who_IP
+            (mkClSlash --you sleep with ___
+              (mkCl --you sleep
+                you_NP
+                (mkVP (P.mkV "sleep"))
+              )
+              with_Prep
+            )
+          )
+        )
+  ;
+
+  --where are you from?
+  --same as strategy 2 above
+  oper example26 : Text =
+    let
+      where_IP : IP = R.mkIP "where" "where" "where's" P.singular
+    in
+      mkText
+        (mkQS
+          presentTense
+          simultaneousAnt
+          positivePol
+          (mkQCl --you are from + where?
+            where_IP
+            (mkClSlash --you are from ___
+              (mkCl --you are
+                you_NP
+                (R.predAux R.auxBe) --[not in API] VP: to be
+              )
+              from_Prep
+            )
+          )
+        )
+  ;
 
 }
